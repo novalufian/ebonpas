@@ -1,39 +1,136 @@
 module.exports = {
-	getAllPenjualan : function(connection, cb) {
-		connection.query(
-		{
-			sql : 'SELECT * FROM penjualan WHERE published = 1',
-		}, 
-		function (error, results, fields) {
-			if (error) {
-				var rs = {
-					'success' 	: false,
-					'message'	: error,
-					'time'	: `grab data at ${Date()}`,
-					'data'	: null,
-					'status'	: 500
-				}
-			}else{
-				if (results.length === 0) {
-					var rs = {
-						'success' 	: false,
-						'message'	: `data not found`,
-						'time'	: `grab data at ${Date()}`,
-						'data'	: results,
-						'status'	: 404
-					}
-				}else{
-					var rs = {
-						'success' 	: true,
-						'message'	: `success grab data`,
-						'time'	: `grab data at ${Date()}`,
-						'data'	: results,
-						'status'	: 200 
-					}
-				}
-			}
+	get_all_data : function(con, cb) {
+		con.query(
+            {
+                sql : `
+                	SELECT * FROM bon 
+                	LEFT JOIN data_pegawai ON data_pegawai.user_id = bon.bon_user
+                	LEFT JOIN master_subagian ON master_subagian.subagian_id = bon.bon_subagian
+                `,
+               
+            },function (err, res, fields) {
+                var r= resData(`get all data bon`, err, res, fields);
+                cb(r);
+            }
+        )
+    },
 
-			return cb(rs);
-		});
-	},
+    save_bon_data : function (con, credentials, cb) {
+    	con.query(
+            {
+                sql : `INSERT INTO bon SET ?`,
+                values : [
+                	{
+                		'bon_id' : credentials.bon_id ,
+						'bon_user' : credentials.bon_user ,
+						'bon_keterangan' : credentials.bon_keterangan ,
+						'bon_status' : credentials.bon_status ,
+						'bon_jam_masuk' : credentials.bon_jam_masuk ,
+						'bon_jam_keluar' : credentials.bon_jam_keluar ,
+						'bon_subagian' : credentials.bon_subagian  , 
+                	}
+                ]
+               
+            },function (err, res, fields) {
+                var r= resData(`save data bon`, err, res, fields);
+                cb(r);
+            }
+        )
+    }, 
+    get_all_data_by_user : function (con, userid, cb) {
+    	con.query(
+            {
+                sql : `
+                	SELECT * FROM bon 
+                	LEFT JOIN data_pegawai ON data_pegawai.user_id = bon.bon_user
+                	LEFT JOIN master_subagian ON master_subagian.subagian_id = bon.bon_subagian
+                	WHERE ? 
+                `,
+                values : [{'bon.bon_user' : userid}]
+               
+            },function (err, res, fields) {
+                var r= resData(`get all data bon by user -> ${userid}`, err, res, fields);
+                cb(r);
+            }
+        )
+    },
+
+    // function get_all_by_subagian() {
+    // 	// body...
+    // },
+
+    get_by_id : function (con, bonid, cb) {
+    	con.query(
+            {
+                sql : `
+                	SELECT * FROM bon 
+                	LEFT JOIN data_pegawai ON data_pegawai.user_id = bon.bon_user
+                	LEFT JOIN master_subagian ON master_subagian.subagian_id = bon.bon_subagian
+                	WHERE ? 
+                `,
+                values : [{'bon.bon_id' : bonid}]
+               
+            },function (err, res, fields) {
+                var r= resData(`get all data bon by user -> ${bonid}`, err, res, fields);
+                cb(r);
+            }
+        )
+    },
+
+    update_bon_data : function (con, credentials, bonid, cb) {
+    	con.query(
+            {
+                sql : `UPDATE bon SET ? WHERE ?`,
+                values : [
+                	{
+						'bon_user' : credentials.bon_user ,
+						'bon_keterangan' : credentials.bon_keterangan ,
+						'bon_status' : credentials.bon_status ,
+						'bon_jam_masuk' : credentials.bon_jam_masuk ,
+						'bon_jam_keluar' : credentials.bon_jam_keluar ,
+						'bon_subagian' : credentials.bon_subagian  , 
+                	},
+                	{
+                		'bon_id' : credentials.bon_id ,
+                	}
+                ]
+               
+            },function (err, res, fields) {
+                var r= resData(`save data bon`, err, res, fields);
+                cb(r);
+            }
+        )
+    }
+}
+
+function resData(msg , error, results, fields) {
+    if (error) {
+        var rs = {
+            'success'   : false,
+            'message'   : error,
+            'time'  : `${msg} at ${Date()}`,
+            'data'  : null,
+            'status'    : 500
+        }
+    }else{
+        if (results.length === 0) {
+            var rs = {
+                'success'   : true,
+                'message'   : `${msg} not found`,
+                'time'  : `${msg} at ${Date()}`,
+                'data'  : results,
+                'status'    : 404
+            }
+        }else{
+            var rs = {
+                'success'   : true,
+                'message'   : `success ${msg}`,
+                'time'  : `${msg} at ${Date()}`,
+                'data'  : results,
+                'status'    : 200 
+            }
+        }
+    }
+
+    return rs;
 }

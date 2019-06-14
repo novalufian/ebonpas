@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		#loader-area{
+			position: relative;
+			width: 100vw;
+			overflow: hidden;
+		}
+	</style>
+</head>
+<body>
+	<div class="nav-bar">
+		<button class="navigate-spa" data-page="test.html">test</button>
+		<button class="navigate-spa" data-page="campign.html">new campign</button>
+		<button class="navigate-spa" data-page="profile.html">profile</button>
+	</div>
+	<div id="loader-area">
+	</div>
+
+	<script>
+		window.$ = window.jQuery = require("jquery");
+		require('../core/main-spa.js');
+
+	</script>
+</body>
+</html>

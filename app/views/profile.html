@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		
+		#main-body{
+			opacity: 0;
+			background: yellow;
+			left: 50px;
+			position: relative;
+			animation: fade-in .5s forwards;
+		}
+
+		@keyframes fade-in {
+			0%{
+				opacity: 0;
+				left: 50px;
+			}
+			100%{
+				opacity: 1;
+				left: 0;
+			}
+		}
+	</style>
+</head>
+<body>
+	<div id="main-body">
+		<h1>laod profile</h1>
+	</div>
+	<script>
+		console.log("hi, i'm from profile ");
+	</script>
+</body>
+</html>

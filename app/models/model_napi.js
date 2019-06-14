@@ -1,61 +1,62 @@
 module.exports = {
-	function get_all_napi_published(con, cb) {
+	get_all_napi_published : function (con, cb) {
 		con.query(
 			{
 				sql : `SELECT * FROM data_napi 
 					 LEFT JOIN master_kamar ON data_napi.napi_kamar = master_kamar.master_kamar_id 
 					 LEFT JOIN master_blok ON master_kamar.master_blok_id = master_blok.blok_master_id 
 					 LEFT JOIN master_subagian ON data_napi.napi_booked_by = master_subagian.subagian_id
-					 WHERE ?`.
+					 WHERE ?`,
 				values : [{'data_napi.napi_published' : 1}]
 			},function (err, res, fields) {
-				var r= resData("get data pegawai ", err, res, fileds);
+				var r= resData("get data pegawai ", err, res, fields);
 				cb(r);
 			}
 		)
 	},
-	function get_all_napi_by_kamarid(con, kamarid, cb) {
+
+	get_all_napi_by_kamarid : function (con, kamarid, cb) {
 		con.query(
 			{
 				sql : `SELECT * FROM data_napi 
 					 LEFT JOIN master_kamar ON data_napi.napi_kamar = master_kamar.master_kamar_id 
 					 LEFT JOIN master_blok ON master_kamar.master_blok_id = master_blok.blok_master_id 
 					 LEFT JOIN master_subagian ON data_napi.napi_booked_by = master_subagian.subagian_id
-					 WHERE ? AND ?`.
+					 WHERE ? AND ?`,
 				values : [
 					{'data_napi.napi_published' : 1},
 					{'data_napi.napi_kamar' : kamarid},
 				]
 			},function (err, res, fields) {
-				var r= resData(`get data pegawai ${kamarid} `, err, res, fileds);
+				var r= resData(`get data pegawai ${kamarid} `, err, res, fields);
 				cb(r);
 			}
 		)
 	},
 
-	function get_one_napi(con, napiId, cb) {
+	get_one_napi : function (con, napiId, cb) {
 		con.query(
 			{
 				sql : `SELECT * FROM data_napi 
 					 LEFT JOIN master_kamar ON data_napi.napi_kamar = master_kamar.master_kamar_id 
 					 LEFT JOIN master_blok ON master_kamar.master_blok_id = master_blok.blok_master_id 
 					 LEFT JOIN master_subagian ON data_napi.napi_booked_by = master_subagian.subagian_id
-					 WHERE ? AND ?`.
+					 WHERE ? AND ?`,
 				values : [
 					{'data_napi.napi_published' : 1},
 					{'data_napi.napi_id' : napiId},
 				]
 			},function (err, res, fields) {
-				var r= resData(`get data pegawai ${napiId} `, err, res, fileds);
+				var r= resData(`get data pegawai ${napiId} `, err, res, fields);
 				cb(r);
 			}
 		)
 	},
 
-	function save_pegawai(con, credentials, cb) {
+	save_pegawai : function (con, credentials, cb) {
 		con.query(
 			{
-				sql : `INSERT INTO data_napi SET ?`.
+				sql : `INSERT INTO data_napi SET ?`,
 				values : [
 					{
 						'napi_id' : credentials.napi_id,
@@ -67,16 +68,16 @@ module.exports = {
 					}
 				]
 			},function (err, res, fields) {
-				var r= resData("insert data napi ", err, res, fileds);
+				var r= resData("insert data napi ", err, res, fields);
 				cb(r);
 			}
 		)
 	},
 
-	function update_data_napi(con, credentials, id, cb) {
+	update_data_napi : function (con, credentials, id, cb) {
 		con.query(
 			{
-				sql : `UPDATE data_napi SET ? WHERE ?`.
+				sql : `UPDATE data_napi SET ? WHERE ?`,
 				values : [
 					{
 						'napi_foto' : credentials.napi_foto,
@@ -89,28 +90,28 @@ module.exports = {
 					}
 				]
 			},function (err, res, fields) {
-				var r= resData(`update data pegawai ${id} `, err, res, fileds);
+				var r= resData(`update data pegawai ${id} `, err, res, fields);
 				cb(r);
 			}
 		)
 	},
 
-	function unpublish_data_napi(con, id,  cb) {
+	unpublish_data_napi : function (con, id,  cb) {
 		con.query(
 			{
-				sql : `UPDATE data_napi SET ? WHERE ?`.
+				sql : `UPDATE data_napi SET ? WHERE ?`,
 				values : [
 					{'napi_upblished' : 0},
 					{'napi_id' : id}
 				]
 			},function (err, res, fields) {
-				var r= resData(`update data pegawai ${id} `, err, res, fileds);
+				var r= resData(`update data pegawai ${id} `, err, res, fields);
 				cb(r);
 			}
 		)
 	},
 
-	function count_all_napi_by_subag(con, subag, kamarid, cb) {
+	count_all_napi_by_subag : function (con, subag, kamarid, cb) {
 		var add_q = (kamarid !== null) ? 'AND ?' : '';
 		var _values = [
 			{'napi_published' : 1},
@@ -125,7 +126,7 @@ module.exports = {
 		}
 		con.query(
 			{
-				sql : `SELECT * FROM data_napi WHERE ? AND ? ${add_q}`.
+				sql : `SELECT * FROM data_napi WHERE ? AND ? ${add_q}`,
 				values : _values
 			},function (err, res, fields) {
 				var r= res.length;
@@ -134,7 +135,7 @@ module.exports = {
 		)
 	},
 
-	function count_all_napi(con, kamarid ,cb) {
+	count_all_napi : function (con, kamarid ,cb) {
 		var add_q = (kamarid !== null) ? 'AND ?' : '';
 		var _values = [{'napi_published' : 1}]
 		if (kamarid !== null) {
@@ -145,7 +146,7 @@ module.exports = {
 		}
 		con.query(
 			{
-				sql : `SELECT * FROM data_napi WHERE ? ${add_q}`.
+				sql : `SELECT * FROM data_napi WHERE ? ${add_q}`,
 				values : _values
 			},function (err, res, fields) {
 				var r= res.length;
@@ -154,7 +155,7 @@ module.exports = {
 		)
 	},
 
-	function count_all_napi_unbooked(con, kamarid ,cb) {
+	count_all_napi_unbooked : function (con, kamarid ,cb) {
 		var add_q = (kamarid !== null) ? 'AND ?' : '';
 		var _values = [
 			{'napi_published' : 1},
@@ -169,7 +170,7 @@ module.exports = {
 		}
 		con.query(
 			{
-				sql : `SELECT * FROM data_napi WHERE ? AND ? ${add_q}`.
+				sql : `SELECT * FROM data_napi WHERE ? AND ? ${add_q}`,
 				values : _values
 			},function (err, res, fields) {
 				var r= res.length;

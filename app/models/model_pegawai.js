@@ -1,34 +1,34 @@
 module.exports = {
-	function get_all_master_subag(con, cb) {
+	get_all_master_subag : function(con, cb) {
 		con.query(
 			{
-				sql : `SELECT * FROM data_pegawai INNER JOIN master_subagian ON data_pegawai.subag_pegawai = master_subagian.subagian_id WHERE ?`.
+				sql : `SELECT * FROM data_pegawai INNER JOIN master_subagian ON data_pegawai.subag_pegawai = master_subagian.subagian_id WHERE ?`,
 				values : [{'published' : 1}]
 			},function (err, res, fields) {
-				var r= resData("get data pegawai ", err, res, fileds);
+				var r= resData("get data pegawai ", err, res, fields);
 				cb(r);
 			}
 		)
 	},
-	function get_one_pegwai(con, id, cb) {
+	get_one_pegwai : function(con, id, cb) {
 		con.query(
 			{
-				sql : `SELECT * FROM data_pegawai INNER JOIN master_subagian ON data_pegawai.subag_pegawai = master_subagian.subagian_id WHERE ? AND ? `.
+				sql : `SELECT * FROM data_pegawai INNER JOIN master_subagian ON data_pegawai.subag_pegawai = master_subagian.subagian_id WHERE ? AND ? `,
 				values : [
 					{'published' : 1},
 					{'user_id' : id},
 				]
 			},function (err, res, fields) {
-				var r= resData(`get data pegawai ${id} `, err, res, fileds);
+				var r= resData(`get data pegawai ${id} `, err, res, fields);
 				cb(r);
 			}
 		)
 	},
 
-	function save_pegawai(con, credentials, cb) {
+	save_pegawai : function(con, credentials, cb) {
 		con.query(
 			{
-				sql : `INSERT INTO data_pegawai SET ?`.
+				sql : `INSERT INTO data_pegawai SET ?`,
 				values : [
 					{
 						'user_id' : credentials.user_id,
@@ -40,16 +40,16 @@ module.exports = {
 					}
 				]
 			},function (err, res, fields) {
-				var r= resData("insert data pegawai ", err, res, fileds);
+				var r= resData("insert data pegawai ", err, res, fields);
 				cb(r);
 			}
 		)
 	},
 
-	function update_data_pegawai(con, credentials, id, cb) {
+	update_data_pegawai : function(con, credentials, id, cb) {
 		con.query(
 			{
-				sql : `UPDATE data_pegawai SET ? WHERE ?`.
+				sql : `UPDATE data_pegawai SET ? WHERE ?`,
 				values : [
 					{
 						'nip_pegawai' : credentials.nip_pegawai,
@@ -62,22 +62,22 @@ module.exports = {
 					}
 				]
 			},function (err, res, fields) {
-				var r= resData(`update data pegawai ${id} `, err, res, fileds);
+				var r= resData(`update data pegawai ${id} `, err, res, fields);
 				cb(r);
 			}
 		)
 	},
 
-	function unpublish_data_pegawai(con, id,  cb) {
+	unpublish_data_pegawai : function(con, id,  cb) {
 		con.query(
 			{
-				sql : `UPDATE data_pegawai SET ? WHERE ?`.
+				sql : `UPDATE data_pegawai SET ? WHERE ?`,
 				values : [
 					{'upblished' : 0},
 					{'user_id' : id}
 				]
 			},function (err, res, fields) {
-				var r= resData(`update data pegawai ${id} `, err, res, fileds);
+				var r= resData(`update data pegawai ${id} `, err, res, fields);
 				cb(r);
 			}
 		)
