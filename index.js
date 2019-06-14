@@ -17,7 +17,7 @@ function createWindow() {
         transparent: false,
     })
 
-    mainWindow.loadFile('./app/views/test.html')
+    mainWindow.loadFile('./app/views/index.html')
 
     mainWindow.on('closed', function() {
         mainWindow = null
@@ -44,10 +44,6 @@ app.on('activate', function() {
 app.on('ready', () => {
     globalShortcut.register('F1', () => {
         myNotification.show();
-    })
-
-    globalShortcut.register('F2', () => {
-        createWindowHutang();
     })
 
     let myNotification = new Notification('Title', {

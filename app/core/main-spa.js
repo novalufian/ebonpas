@@ -1,7 +1,15 @@
-loadPage("loader.html #loader-align");
-$(".navigate-spa").each(function (i, e) {
-	e.addEventListener("click", navigate_page)
+$(document).ready(function () {
+	boot();
 })
+
+function boot() {
+	loadPage("loader.html #loader-align");
+	$(".navigate-spa").each(function (i, e) {
+		e.addEventListener("click", navigate_page)
+	})
+	$('#template-navbar-section').load("partials/navbar.html");
+	console.log($("#btn-login"))
+}
 
 function navigate_page() {
 	console.log('navigae');
@@ -10,9 +18,10 @@ function navigate_page() {
 }
 
 function loadPage(page) {
-	$('#loader-area').load("loader.html");
+	$('#template-content-section').load("loader.html");
+	$('#template-login-section').load("login.html");
 	setTimeout(function () {
-		$('#loader-area').load(page, function (res, status, xhr) {
+		$('#template-content-section').load(page, function (res, status, xhr) {
 		});
 	}, 500)
 }
