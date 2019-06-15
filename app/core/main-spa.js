@@ -9,7 +9,7 @@ module.exports = {
 }
 
 function boot() {
-	loadPage("page/home.html");
+	loadPage("page/bon-napi.html");
 	$('#template-navbar-section').load("partials/navbar.html");
 
 	setTimeout(function () {
@@ -17,7 +17,7 @@ function boot() {
 			e.addEventListener("click", navigate_page)
 		})
 	}, 550)
-	// $('#template-login-section').load("page/login.html");
+	$('#template-login-section').load("page/login.html");
 }
 
 function navigate_page() {

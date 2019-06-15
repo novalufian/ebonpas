@@ -18,7 +18,7 @@ module.exports = {
 		var idCart = null;
 		var indexCart = null;
 		list.item.forEach(function(e, i){
-			if (e.code == data.code ) {
+			if (e.napi_id == data.napi_id ) {
 				itemState = true;
 				idCart = e.idCart;
 				indexCart = i;

@@ -16,12 +16,12 @@
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-4">Selamat Datang di E-bonpas!</h1>
                                     </div>
-                                    <form class="user">
+                                    <form class="user" id="form-login">
                                         <div class="form-group">
-                                            <input type="email" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Masukkan username anda">
+                                            <input type="email" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Masukkan username anda" name="username">
                                         </div>
                                         <div class="form-group">
-                                            <input type="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="Password">
+                                            <input type="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="Password" name="password">
                                         </div>
                                         <div class="form-group">
                                             <div class="custom-control custom-checkbox small">
@@ -50,19 +50,10 @@
     </div>
 </div>
 
+
 <script>
-    // const login = document.getElementById("btn-login");
-    // console.log(login)
-    // login.addEventListener("click", function () {
-    //     console.log('login clicked')
-    // })
+    require('../controllers/auth.js');
 
-    $("#btn-login").click(function () {
-        $('#template-login-section').css("top","-100vh")
-    })
-
-    $("#btn-logout").click(function () {
-        $('#template-login-section').css("top","0px")
-    })
+   
 
 </script>

@@ -2,7 +2,11 @@ module.exports = {
     login : function(con, credentials, cb) {
         con.query(
             {
-                sql : `SELECT * FROM login WHERE ? AND ? AND ?`,
+                sql : `
+                    SELECT * FROM login
+                    LEFT JOIN data_pegawai ON login.user_id = data_pegawai.user_id
+                    LEFT JOIN master_subagian ON master_subagian.subagian_id = data_pegawai.subag_pegawai
+                    WHERE ? AND ? AND ?`,
                 values : [
                     {'username' : credentials.username},
                     {'password' : credentials.password},
