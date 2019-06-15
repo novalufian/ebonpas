@@ -1,0 +1,86 @@
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column margin-top-100 page-fade-in">
+            <!-- Main Content -->
+            <div id="content">
+                <!-- Begin Page Content -->
+                  <div class="container-fluid start-screen h-100 col-md-10">
+
+                  	<div class="card">
+                            <div class="card-header">
+                                <strong>Input Data</strong> Pegawai
+                            </div>
+                            <div class="card-body card-block">
+                                <form action="http://ebonpas.epizy.com/index.php/admin/pegawai/simpan" method="post" enctype="multipart/form-data" class="form-horizontal">
+                                    
+                                    <div class="row">
+                                        <div class="col cell-3">
+                                            <label f="text-input" class=" form-control-label">Nip Pegawai</label>
+                                        </div>
+                                        <div class=" cell-9">
+                                            <input type="text" id="text-input" name="nip_pegawai" placeholder="contoh : 198503302003121002" class="form-control">
+                                            <small class="form-text text-muted">*data tidak boleh kosong</small>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col cell-3">
+                                            <label f="text-input" class=" form-control-label">Nama Pegawai</label>
+                                        </div>
+                                        <div class=" cell-9">
+                                            <input type="text" id="text-input" name="nama_pegawai" placeholder="Nama lengkap pegawai" class="form-control">
+                                            <small class="form-text text-muted">*data tidak boleh kosong</small>
+                                        </div>
+                                    </div>
+                                 
+                                    <div class="row">
+                                        <div class=" cell-3"><label for="select" class=" form-control-label">Subagian</label></div>
+                                        <div class=" cell-9">
+                                            <select name="subag_pegawai" id="select" class="form-control">
+                                                <option value="1">TU</option>
+                                                <option value="2">KPLP</option>
+                                                <option value="3">REGISTRASI</option>
+                                                <option value="4">PLOKLINIK</option>
+                                                <option value="5">KAMTIB</option>
+                                                <option value="6">KOPERASI</option>
+                                                <option value="7">BIMPAS</option>
+                                                <option value="8">BENGKER</option>
+                                                <option value="9">POS 3.1</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="row">
+                                        <div class="col cell-3"><label class=" form-control-label">Jenis Kelamin</label></div>
+                                        <div class="col cell-9">
+                                            <div class="form-check-inline form-check">
+                                                <label for="inline-radio1" class="form-check-label ">
+                                                    <input type="radio" id="inline-radio1" name="sex_pegawai" value="0" class="form-check-input">Laki - laki
+                                                </label>
+                                                <label for="inline-radio2" class="form-check-label ">
+                                                    <input type="radio" id="inline-radio2" name="sex_pegawai" value="1" class="form-check-input">Perempuan
+                                                </label>
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="row">
+                                        <div class="cell-7">
+                                            <a href="http://ebonpas.epizy.com/index.php/admin/pegawai" class="btn btn-warning">kembali</a>
+                                        </div>
+                                        <div class="cell-5">
+                                            <button type="reset" class="btn btn-default">Reset Data</button>
+                                            <button type="submit" class="btn btn-primary">Simpan data</button>
+                                        </div>
+                                    </div>
+                            </div>
+                        </div>
+                        
+            	</div>
+            <!-- End of Main Content -->
+        </div>
+        <!-- End of Content Wrapper -->
+    </div>
+    <!-- End of Page Wrapper -->
+    <script src="../../assets/js/demo/datatables-demo.js"></script>
+
+

@@ -5,3 +5,75 @@ div#template-login-section {
     z-index: 9999;
     transition: all .5s;
 }
+
+.margin-top-100{
+	margin-top: 100px;
+}
+
+.padding-10-inset{
+	padding-right: 10px;
+}
+
+.page-fade-in{
+	opacity: 0;
+	left: 200px;
+	position: relative;
+	animation: fade-in .75s forwards;
+}
+
+.tiles-grid {
+	margin-right: 50px;
+	padding-top: 40px;
+}
+
+.tiles-grid  a:hover{
+	color: white;
+}
+
+.tiles-group::before {
+    top: 0px !important;
+    color : black;
+}
+
+div#template-navbar-section {
+    position: fixed;
+    width: 100%;
+    left: 0;
+    top: 0;
+    z-index: 9;
+}
+
+#wrapper #content-wrapper{
+	overflow : unset;
+}
+
+div#user-client-form {
+    position: fixed;
+    width: 100%;
+    min-height: 100vh;
+    z-index: 9;
+    left: -100%;
+    background: #f8f9fc;
+    transition : all .5s;
+}
+
+div#data-pegawai-form {
+    position: fixed;
+    width: 100%;
+    min-height: 100vh;
+    z-index: 9;
+    left: -100%;
+    background: #f8f9fc;
+    transition : all .5s;
+}
+/**/
+@keyframes fade-in {
+	0%{
+		opacity: 0;
+		left: 200px;
+	}
+	100%{
+		opacity: 1;
+		left: 0;
+	}
+}

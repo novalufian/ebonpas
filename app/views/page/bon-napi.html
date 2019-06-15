@@ -1,0 +1,148 @@
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column margin-top-100 page-fade-in">
+
+            <!-- Main Content -->
+            <div id="content">
+                <!-- Begin Page Content -->
+                  <div class="container-fluid start-screen h-100 row">
+                  	
+
+                  	<div class="card col-md-10">
+                        <div class="card-header">
+                            <div class="row">
+                                <div class="cell-10">
+                                    <strong>Input Data</strong> Pegawai
+                                </div>
+                                <div class="cell-2">
+                                    <button type="button" class="button primary" data-toggle="modal" data-target=".bd-example-modal-lg">cari data napi <span class="ti-search"></span></button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <form action="http://ebonpas.epizy.com/index.php/admin/bon/kirim_bon" class="cell-12" method="post">
+                            <div class="card-body card-block">
+                                <img src="../../assets/img/kop.png" alt="" style="display: block; margin: 0 auto 75px; width: 100%;">
+                                <div class="row">
+                                    <div class="col cell-4">
+                                        <label for="text-input" class=" form-control-label">Nama pegawai</label>
+                                    </div>
+                                    <div class="col-12 cell-8">
+                                        <input disabled type="text" class="form-control" value="super admin">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col cell-4">
+                                        <label for="text-input" class=" form-control-label">NIP pegawai</label>
+                                    </div>
+                                    <div class="col-12 cell-8">
+                                        <input disabled type="text" class="form-control" value="12345">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col cell-4">
+                                        <label for="text-input" class=" form-control-label">Sub Bagian</label>
+                                    </div>
+                                    <div class="col-12 cell-8">
+                                        <input disabled type="text" class="form-control" value="TU">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col cell-4">
+                                        <label for="text-input" class=" form-control-label">keperluan</label>
+                                    </div>
+                                    <div class="col-12 cell-8">
+                                        <input name="keperluan_bon" type="text" class="form-control">
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col cell-4">
+                                        <label for="text-input" class=" form-control-label">Jam Keluar</label>
+                                    </div>
+                                    <div class="col-12 cell-8">
+                                        <div class="input-group date" id="datetimepicker2" data-target-input="nearest">
+                                            <input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker2" name="jam_keluar">
+                                            <div class="input-group-append" data-target="#datetimepicker2" data-toggle="datetimepicker">
+                                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col cell-4">
+                                        <label for="text-input" class=" form-control-label">Jam Masuk</label>
+                                    </div>
+                                    <div class="col-12 cell-8">
+                                        <div class="input-group date" id="datetimepicker3" data-target-input="nearest">
+                                            <input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker3" name="jam_masuk">
+                                            <div class="input-group-append" data-target="#datetimepicker3" data-toggle="datetimepicker">
+                                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="clearfix"></div>
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">Nama</th>
+                                            <th scope="col">Blok / kamar</th>
+                                            <th scope="col">Bon</th>
+                                            <th scope="col">action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                    </tbody>
+                                </table>
+
+                                <div class="row" style="margin-top: 100px;">
+                                    <div class="cell-8"></div>
+                                    <div class="cell-4">
+                                        <p>Malang, 14-Jun-2019</p>
+                                        <img style="height: 100px;" src="http://localhost/ebon/uploads/pegawai/ttd-USR-981722657-20190203100541.jpg" alt="">
+                                        <p>super admin</p>
+                                        <p>NIP : 12345</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="cell-8">
+                                        <strong>Input Data</strong> Pegawai
+                                    </div>
+                                    <div class="cell-4">
+                                        <button class="btn btn-warning btn-icon-split navigate-spa" data-page="page/home.html">
+                                            <span class="icon text-white-600">
+                                                <i class="fas fa-file"></i>
+                                            </span>
+                                            <span class="text">Cetak berkas</span>
+                                        </button>
+                                        <button class="btn btn-success btn-icon-split navigate-spa" data-page="page/home.html">
+                                            <span class="icon text-white-600">
+                                                <i class="fas fa-paper-plane"></i>
+                                            </span>
+                                            <span class="text">Kirim permintaan bon</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+
+                    </div>
+
+                            
+            	</div>
+            <!-- End of Main Content -->
+        </div>
+        <!-- End of Content Wrapper -->
+
+    </div>
+    <!-- End of Page Wrapper -->
+
+    <script src="../../assets/js/demo/datatables-demo.js"></script>
+
+

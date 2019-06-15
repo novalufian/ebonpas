@@ -2,24 +2,31 @@ $(document).ready(function () {
 	boot();
 })
 
+module.exports = {
+	boot : function () {
+		
+	}
+}
+
 function boot() {
-	loadPage("loader.html #loader-align");
-	$(".navigate-spa").each(function (i, e) {
-		e.addEventListener("click", navigate_page)
-	})
+	loadPage("page/home.html");
 	$('#template-navbar-section').load("partials/navbar.html");
-	console.log($("#btn-login"))
+
+	setTimeout(function () {
+		$(".navigate-spa").each(function (i, e) {
+			e.addEventListener("click", navigate_page)
+		})
+	}, 550)
+	// $('#template-login-section').load("page/login.html");
 }
 
 function navigate_page() {
-	console.log('navigae');
 	var page = this.getAttribute("data-page");
-	loadPage(page)
+	loadPage(page);
 }
 
 function loadPage(page) {
-	$('#template-content-section').load("loader.html");
-	$('#template-login-section').load("login.html");
+	$('#template-content-section').load("page/loader.html");
 	setTimeout(function () {
 		$('#template-content-section').load(page, function (res, status, xhr) {
 		});

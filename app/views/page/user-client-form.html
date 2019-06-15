@@ -1,0 +1,83 @@
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column margin-top-100 page-fade-in">
+            <!-- Main Content -->
+            <div id="content">
+                <!-- Begin Page Content -->
+                  <div class="container-fluid start-screen h-100 col-md-8">
+                                <div class="card ">
+                                    <div class="card-header">
+                                        <strong>Input Data</strong> Pegawai
+                                    </div>
+                                    <div class="card-body card-block">
+                                        <form action="http://ebonpas.epizy.com/index.php/admin/user/simpan/admin" method="post" enctype="multipart/form-data" class="form-horizontal">
+
+                                            <div class="row">
+                                                <div class="cell-3">
+                                                    <label for="text-input" class=" form-control-label">Nip Pegawai</label>
+                                                </div>
+                                                <div class="cell-6">
+                                                    <input type="hidden" id="id_pegawai" name="id_pegawai" placeholder="contoh : 198503302003121002" class="form-control">
+                                                    <input type="text" id="nip_pegawai" name="nip_pegawai" placeholder="contoh : 198503302003121002" class="form-control">
+                                                    <small class="form-text text-muted">*data tidak boleh kosong</small>
+                                                </div>
+                                                <div class="cell-3">
+                                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">cari data pegawai <span class="ti-search"></span></button>
+                                                    <!-- <button class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter"> -->
+                                                    <!-- Cari pegawai
+                                                    <span class="ti-search"></span> -->
+                                                    <!-- </button> -->
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="cell-3">
+                                                    <label for="text-input" class=" form-control-label">Nama Pegawai</label>
+                                                </div>
+                                                <div class="cell-9">
+                                                    <input type="text" id="nama_pegawai" name="nama_pegawai" placeholder="Nama lengkap pegawai" class="form-control">
+                                                    <small class="form-text text-muted">*data tidak boleh kosong</small>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class=" cell-3"><label for="email-input" class=" form-control-label">Username</label></div>
+                                                <div class=" cell-9">
+                                                    <input type="text" id="email-input" name="username" placeholder="Usernaem harus unik" class="form-control">
+                                                    <small class="help-block form-text">*sistem cek avail / not</small>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class=" cell-3"><label for="email-input" class=" form-control-label">Password</label></div>
+                                                <div class=" cell-9">
+                                                    <input type="text" id="email-input" name="password" placeholder="Password baru" class="form-control">
+                                                </div>
+                                            </div>
+
+
+                                        </form>
+                                    </div>
+                                    <div class="card-footer">
+                                        <div class="row">
+                                            <div class="col-md-7">
+                                                <button class="btn btn-warning" id="btn-kembali-user">kembali</button>
+                                            </div>
+                                            <div class="col-md-5">
+                                                <button type="reset" class="btn btn-default">Reset Data</button>
+                                                <button type="submit" class="btn btn-primary">Simpan data</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            
+                </div>
+            <!-- End of Main Content -->
+        </div>
+        <!-- End of Content Wrapper -->
+    </div>
+    <!-- End of Page Wrapper -->
+    <script src="../../assets/js/demo/datatables-demo.js"></script>
+    <script>
+        $("#btn-kembali-user").click(function () {
+             $("#user-client-form").css("left", "-100%")
+        })
+    </script>
+
+

@@ -1,0 +1,87 @@
+        <!-- Content Wrapper -->
+        <div id="user-client-form"></div>
+
+
+        <div id="content-wrapper" class="d-flex flex-column margin-top-100 page-fade-in">
+            <!-- Main Content -->
+            <div id="content">
+                <!-- Begin Page Content -->
+                  <div class="container-fluid start-screen h-100 row">
+                  	
+                        <div class="container content-area">
+
+                            <!-- Animated -->
+                            <div class="animated fadeIn">
+                              <div class="row">
+                                  <div class="col-md-12">
+                                      <div class="card">
+                                          <div class="card-header">
+                                            <button class="btn btn-primary" id="btn-tambah-user">
+                                                  <span class="ti-plus"></span>
+                                                  tambah admin baru
+                                            </button>
+                                              <strong class="card-title" style="float: right;">Data user clent</strong>
+                                          </div>
+                                          <div class="card-body">
+                                              <table id="dataTable" class="table table-striped table-bordered">
+                                                  <thead>
+                                                      <tr>
+                                                          <th>NIP</th>
+                                                          <th>Nama</th>
+                                                          <th>Username</th>
+                                                          <th>Action</th>
+                                                      </tr>
+                                                  </thead>
+                                                  <tbody>
+                                                      <tr>
+                                                          <td>peagwai 1</td>
+                                                          <td>123</td>
+                                                          <td>admin234</td>
+                                                          <td>
+                                                              <button class="btn btn-danger" data-toggle="modal" data-target="#modalDeleteAdmin" data-user-id="LGN-41907154-20190208075342" style="margin: 5px 0px">
+                                                                  <i class="fa fa-trash-alt"></i>
+                                                              </button>
+                                                              <button class="btn btn-success">
+                                                                  <i class="fa fa-edit "></i>
+                                                              </button>
+                                                          </td>
+                                                      </tr>
+                                                      <tr>
+                                                          <td>super admin</td>
+                                                          <td>12345</td>
+                                                          <td>admin</td>
+                                                          <td>
+                                                              <button class="button alert btn-delete-admin" data-toggle="modal" data-target="#modalDeleteAdmin" data-user-id="1" style="margin: 5px 0px">
+                                                                  <span class="mif-bin mif-lg fg-white"></span>
+                                                              </button>
+                                                              <button class="button success">
+                                                                  <span class="mif-pencil mif-lg fg-white"></span>
+                                                              </a>
+                                                          </td>
+                                                      </tr>
+                                                  </tbody>
+                                              </table>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+                            </div>
+                            <!-- .animated -->
+
+                            </div>
+                            
+            	</div>
+            <!-- End of Main Content -->
+        </div>
+        <!-- End of Content Wrapper -->
+    </div>
+    <!-- End of Page Wrapper -->
+    <script src="../../assets/js/demo/datatables-demo.js"></script>
+    <script>
+        $("#user-client-form").load("page/user-client-form.html")
+        $("#btn-tambah-user").click(function () {
+            $("#user-client-form").css("left", "0px")
+        })
+    </script>
+
+

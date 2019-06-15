@@ -16,8 +16,10 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
     <!-- Custom styles for this template -->
+    <link href="../../assets/css/metro-all.css" rel="stylesheet">
     <link href="../../assets/css/sb-admin-2.min.css" rel="stylesheet">
     <link href="../../assets/css/sb-admin-2-suctom.css" rel="stylesheet">
+    <!-- <link href="../../assets/css/start.css" rel="stylesheet"> -->
 
     <!-- Custom styles for this page -->
     <link href="../../assets/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
@@ -49,10 +51,10 @@
             <!-- End of Main Content -->
 
             <!-- Footer -->
-            <footer class="sticky-footer bg-white">
+            <footer class="sticky-footer ">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Your Website 2019</span>
+                        <span>Copyright &copy; Ebonpas 2019 - created by <a href="https://wwww/instagram.com/novalufian">nova lufian</a></span>
                     </div>
                 </div>
             </footer>
@@ -83,6 +85,90 @@
      </div>
  </div>
 
+   <div class="modal fade" id="modalDeleteAdmin" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+         <div class="modal-dialog" role="document">
+             <div class="modal-content">
+                 <div class="modal-header">
+                     <h5 class="modal-title text-danger" id="exampleModalLabel">hapus data ?</h5>
+                     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                         <span aria-hidden="true">×</span>
+                     </button>
+                 </div>
+                 <div class="modal-body">Apakah anda ingin menghapus data ini .</div>
+                 <div class="modal-footer">
+                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Batalkan</button>
+                     <button id="btn-logout" class="btn btn-danger"  data-dismiss="modal">ya, hapus data ini</button>
+                 </div>
+             </div>
+         </div>
+     </div>
+
+
+    <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content ">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Search data pegawai</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <table id="dataTable" class="table table-striped table-bordered">
+                        <thead>
+                            <tr>
+                                <th>NIP</th>
+                                <th>Nama</th>
+                                <th>Sub Bagian</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>123</td>
+                                <td>peagwai 1</td>
+                                <td>REGISTRASI</td>
+                                <td>
+                                    <button class="btn btn-success btn-pilih-admin" data-pegawai-id="USR-575068889-20190203091221" data-pegawai-nip="123" data-pegawai-nama="peagwai 1" data-dismiss="modal">
+                                        pilih
+                                        <span class="ti-plus"></span>
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>12345</td>
+                                <td>super admin</td>
+                                <td>TU</td>
+                                <td>
+                                    <button class="btn btn-success btn-pilih-admin" data-pegawai-id="USR-8068201811180337385788" data-pegawai-nip="12345" data-pegawai-nama="super admin" data-dismiss="modal">
+                                        pilih
+                                        <span class="ti-plus"></span>
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>1234</td>
+                                <td>pegawai 2</td>
+                                <td>KAMTIB</td>
+                                <td>
+                                    <button class="btn btn-success btn-pilih-admin" data-pegawai-id="USR-981722657-20190203100541" data-pegawai-nip="1234" data-pegawai-nama="pegawai 2" data-dismiss="modal">
+                                        pilih
+                                        <span class="ti-plus"></span>
+                                    </button>
+                                </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Bootstrap core JavaScript-->
     <script>
         window.$ = window.jQuery = require("jquery");
@@ -102,6 +188,9 @@
 
     <!-- Page level custom scripts -->
     <script src="../../assets/js/demo/datatables-demo.js"></script>
+    
+    <script src="../../assets/js/metro.js"></script>
+    <script src="../../assets/js/start.js"></script>
 
     <script>
     	
