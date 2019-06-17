@@ -64,7 +64,21 @@ div#data-pegawai-form {
     z-index: 9;
     left: -100%;
     background: #f8f9fc;
+}
+
+div#template-preloading {
+    position: fixed;
+    top: 0;
+    z-index: 9;
+    width: 100%;
+    height: 100vh;
+    background: #fff;
+    opacity: .9;
     transition : all .5s;
+}
+
+div#loader-align {
+    margin-top: 250px;
 }
 /**/
 @keyframes fade-in {

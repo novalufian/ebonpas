@@ -100,6 +100,25 @@ module.exports = {
                 cb(r);
             }
         )
+    },
+    update_bon_status : function (con, credentials, cb) {
+        con.query(
+            {
+                sql : `UPDATE bon SET ? WHERE ?`,
+                values : [
+                    {
+                        'bon_status' : credentials.bon_status  , 
+                    },
+                    {
+                        'bon_id' : credentials.bon_id ,
+                    }
+                ]
+               
+            },function (err, res, fields) {
+                var r= resData(`update status bon`, err, res, fields);
+                cb(r);
+            }
+        )
     }
 }
 

@@ -15,7 +15,7 @@
                                     <span class="fa fa-book-reader icon"></span>
                                     <span class="branding-bar">Bon napi </span>
                                 </div>
-                                <div data-role="tile" data-page="page/riwayat-bon.html" data-size="wide" class="bg-gradient-danger navigate-spa">
+                                <div data-role="tile" data-page="page/bon-riwayat.html" data-size="wide" class="bg-gradient-danger navigate-spa">
                                     <span class="fa fa-history icon"></span>
                                     <span class="branding-bar">Riwayat bon napi</span>
                                 </div>
@@ -76,10 +76,19 @@
         }
 
         function loadPage(page) {
-            $('#template-content-section').load("page/loader.html");
+            preloading_show();
             setTimeout(function () {
                 $('#template-content-section').load(page, function (res, status, xhr) {
                 });
+                preloading_hide();
             }, 500)
+        }
+
+        function preloading_show() {
+            $('#template-preloading').css("top", "0px");
+        }
+
+        function preloading_hide() {
+            $('#template-preloading').css("top", "-200vh");
         }
     </script>

@@ -16,7 +16,7 @@ function boot_login() {
        console.log(user !== null);
        if (user !== null) {
              setTimeout(function () {
-                $('#template-login-section').css("top","-100vh");     
+                $('#template-login-section').css("top","-200vh");     
              }, 1000)
        }
 }
@@ -45,7 +45,7 @@ $("#btn-login").click(function () {
                             }
                             _session.create(thisUser); 
                             console.log(thisUser)
-                            $('#template-login-section').css("top","-100vh");
+                            $('#template-login-section').css("top","-200vh");
                      }
 
               }else{

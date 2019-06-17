@@ -19,6 +19,7 @@
     <link href="../../assets/css/metro-all.css" rel="stylesheet">
     <link href="../../assets/css/sb-admin-2.min.css" rel="stylesheet">
     <link href="../../assets/css/sb-admin-2-suctom.css" rel="stylesheet">
+    <link href="../../assets/css/DateTimePicker.min.css" rel="stylesheet">
     <!-- <link href="../../assets/css/start.css" rel="stylesheet"> -->
 
     <!-- Custom styles for this page -->
@@ -30,7 +31,8 @@
 
     <!-- Page Wrapper -->
     <div id="wrapper" style="min-height: 100vh;">
-
+        
+        <div id="template-preloading"></div>
     	<div id="template-login-section"></div>
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
@@ -172,7 +174,8 @@
     <!-- Bootstrap core JavaScript-->
     <script>
         window.$ = window.jQuery = require("jquery");
-    	require('../core/main-spa.js');
+        require('../core/main-spa.js');
+    	require('../../assets/js/DateTimePicker.min.js');
     </script>
     <script src="../../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
@@ -181,6 +184,7 @@
 
     <!-- Custom scripts for all pages-->
     <script src="../../assets/js/sb-admin-2.min.js"></script>
+    <script src="../../assets/js/DateTimePicker.min.js"></script>
 
     <!-- Page level plugins -->
     <script src="../../assets/vendor/datatables/jquery.dataTables.min.js"></script>

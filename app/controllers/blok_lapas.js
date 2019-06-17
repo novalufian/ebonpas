@@ -143,11 +143,28 @@ function create_napi_table_list(data_napi) {
 }
 
 function add_napi_to_cart() {
-    this.setAttribute("class", "btn btn-light");
-    this.textContent = "batalkan";
-    var napiid = this.getAttribute("data-napi-id");
-    var data = globalDataNapi[napiid];
-    _cart.add(data)
+    var thisElement = this;
+    thisElement.textContent = "loading..";
+
+    var napiid = thisElement.getAttribute("data-napi-id");
+    var cred = {
+        'id' : napiid,
+        'napi_booked' : 1,
+        'napi_booked_by' : current_user.user_id
+    }
+
+    _napi.book_napi(_conn, cred, function (res) {
+        if (res.success) {
+            if(res.status == 200){
+                var data = globalDataNapi[napiid];
+                thisElement.setAttribute("class", "btn btn-light");
+                thisElement.textContent = "batalkan";
+                _cart.add(data);
+            }else{
+                thisElement.textContent = "bon napi";
+            }
+        }
+    })
 }
 
 
@@ -231,11 +248,18 @@ function navigate_page() {
     loadPage(page);
 }
 
-
 function loadPage(page) {
-    $('#template-content-section').load("page/loader.html");
+    preloading_show();
     setTimeout(function () {
         $('#template-content-section').load(page, function (res, status, xhr) {
         });
+        preloading_hide();
     }, 500)
+}
+function preloading_show() {
+    $('#template-preloading').css("top", "0px");
+}
+
+function preloading_hide() {
+    $('#template-preloading').css("top", "-200vh");
 }

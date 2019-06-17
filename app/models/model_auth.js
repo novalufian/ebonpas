@@ -1,5 +1,5 @@
 module.exports = {
-    get_all_user_by_role_user : function(con, role_user) {
+    get_all_user_by_role_user : function(con, role_user, cb) {
         con.query(
             {
                 sql : `
@@ -19,7 +19,7 @@ module.exports = {
         )
     },
 
-    get_one_published_by_role_user : function(con, role_user, id) {
+    get_one_published_by_role_user : function(con, role_user, id, cb) {
         con.query(
             {
                 sql : `
@@ -69,6 +69,7 @@ module.exports = {
                         'user_id' : credentials.user_id ,
                         'username' : credentials.username ,
                         'password' : credentials.password ,
+                        'user_login_role' : credentials.user_login_role ,
                     }
                 ]
                

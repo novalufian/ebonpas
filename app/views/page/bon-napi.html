@@ -20,95 +20,91 @@
                             </div>
                         </div>
                         <div  class="col-md-12">
-                            <div class="card-body card-block">
-                                <img src="../../assets/img/kop.png" alt="" style="display: block; margin: 0 auto 75px; width: 100%;">
-                                <div class="row col-md-7">
-                                    <div class="col-md-4">
-                                        <label for="text-input" class=" form-control-label">Nama pegawai</label>
+                            <form id="form-bon-napi">
+                                <div class="card-body card-block">
+                                    <img src="../../assets/img/kop.png" alt="" style="display: block; margin: 0 auto 75px; width: 100%;">
+                                    <div class="row col-md-7">
+                                        <div class="col-md-4">
+                                            <label for="text-input" class=" form-control-label">Nama pegawai</label>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <input disabled type="text" class="form-control"  id="this_user_nama">
+                                        </div>
                                     </div>
-                                    <div class="col-md-8">
-                                        <input disabled type="text" class="form-control"  id="this_user_nama">
+                                    <div class="row col-md-7">
+                                        <div class="col-md-4">
+                                            <label for="text-input" class=" form-control-label">NIP pegawai</label>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <input disabled type="text" class="form-control" id="this_user_nip">
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="row col-md-7">
-                                    <div class="col-md-4">
-                                        <label for="text-input" class=" form-control-label">NIP pegawai</label>
+                                    <div class="row col-md-7">
+                                        <div class="col-md-4">
+                                            <label for="text-input" class=" form-control-label">Sub Bagian</label>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <input disabled type="text" class="form-control" id="this_user_subagian">
+                                        </div>
                                     </div>
-                                    <div class="col-md-8">
-                                        <input disabled type="text" class="form-control" id="this_user_nip">
+                                    <div class="row col-md-7">
+                                        <div class="col-md-4">
+                                            <label for="text-input" class=" form-control-label">keperluan</label>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <input name="keperluan_bon" type="text" class="form-control">
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="row col-md-7">
-                                    <div class="col-md-4">
-                                        <label for="text-input" class=" form-control-label">Sub Bagian</label>
-                                    </div>
-                                    <div class="col-md-8">
-                                        <input disabled type="text" class="form-control" id="this_user_subagian">
-                                    </div>
-                                </div>
-                                <div class="row col-md-7">
-                                    <div class="col-md-4">
-                                        <label for="text-input" class=" form-control-label">keperluan</label>
-                                    </div>
-                                    <div class="col-md-8">
-                                        <input name="keperluan_bon" type="text" class="form-control">
-                                    </div>
-                                </div>
-
-                                <div class="row col-md-7">
-                                    <div class="col-md-4">
-                                        <label for="text-input" class=" form-control-label">Jam Keluar</label>
-                                    </div>
-                                    <div class="col-md-8">
-                                        <div class="input-group date" id="datetimepicker2" data-target-input="nearest">
-                                            <input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker2" name="jam_keluar">
-                                            <div class="input-group-append" data-target="#datetimepicker2" data-toggle="datetimepicker">
-                                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                    <div class="row col-md-7">
+                                        <div class="col-md-4">
+                                            <label for="text-input" class=" form-control-label">Jam Keluar</label>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <div class="input-group date" id="datetimepicker2" data-target-input="nearest">
+                                                <input type="text" data-field="datetime" name="jam_keluar">
+                                                <div id="dtBox"></div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-
-                                <div class="row col-md-7">
-                                    <div class="col-md-4">
-                                        <label for="text-input" class=" form-control-label">Jam Masuk</label>
-                                    </div>
-                                    <div class="col-md-8">
-                                        <div class="input-group date" id="datetimepicker3" data-target-input="nearest">
-                                            <input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker3" name="jam_masuk">
-                                            <div class="input-group-append" data-target="#datetimepicker3" data-toggle="datetimepicker">
-                                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                    <div class="row col-md-7">
+                                        <div class="col-md-4">
+                                            <label for="text-input" class=" form-control-label">Jam Masuk</label>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <div class="input-group date" id="datetimepicker3" data-target-input="nearest">
+                                                 <input type="text" data-field="datetime" name="jam_masuk">
+                                                <div id="dtBox"></div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
 
-                                <div class="clearfix"></div>
-                                <table class="table table-bordered " id="bon-napi-list">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">ID</th>
-                                            <th scope="col">No registrasi</th>
-                                            <th scope="col">Nama</th>
-                                            <th scope="col">Blok / kamar</th>
-                                            <th scope="col">action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
+                                    <div class="clearfix"></div>
+                                    <table class="table table-bordered " id="bon-napi-list">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">ID</th>
+                                                <th scope="col">No registrasi</th>
+                                                <th scope="col">Nama</th>
+                                                <th scope="col">Blok / kamar</th>
+                                                <th scope="col">action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
 
-                                    </tbody>
-                                </table>
+                                        </tbody>
+                                    </table>
 
-                                <div class="row" style="margin-top: 100px;">
-                                    <div class="cell-8"></div>
-                                    <div class="cell-4">
-                                        <p>Malang, 14-Jun-2019</p>
-                                        <img style="height: 100px;" src="http://localhost/ebon/uploads/pegawai/ttd-USR-981722657-20190203100541.jpg" alt="">
-                                        <p>super admin</p>
-                                        <p>NIP : 12345</p>
+                                    <div class="row" style="margin-top: 100px;">
+                                        <div class="cell-8"></div>
+                                        <div class="cell-4">
+                                            <p>Malang, 14-Jun-2019</p>
+                                            <img style="height: 100px;" src="http://localhost/ebon/uploads/pegawai/ttd-USR-981722657-20190203100541.jpg" alt="">
+                                            <p>super admin</p>
+                                            <p>NIP : 12345</p>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            </form>
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-md-7">
@@ -121,7 +117,7 @@
                                             </span>
                                             <span class="text">Cetak berkas</span>
                                         </button>
-                                        <button class="btn btn-success btn-icon-split navigate-spa" data-page="page/home.html">
+                                        <button class="btn btn-success btn-icon-split " id="btn-kirim-bon">
                                             <span class="icon text-white-600">
                                                 <i class="fas fa-paper-plane"></i>
                                             </span>
@@ -145,5 +141,11 @@
 
     <script src="../../assets/js/demo/datatables-demo.js"></script>
     <script src="../controllers/bon_napi.js"></script>
+    <script>
+         $(function () {
+        $('#dtBox').DateTimePicker();
+        $('#datetimepicker3')
+    });
+    </script>
 
 

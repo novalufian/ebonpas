@@ -1,9 +1,9 @@
 module.exports = {
-	get_all_master_subag : function(con, cb) {
+	get_all_pegawai : function(con, cb) {
 		con.query(
 			{
 				sql : `SELECT * FROM data_pegawai INNER JOIN master_subagian ON data_pegawai.subag_pegawai = master_subagian.subagian_id WHERE ?`,
-				values : [{'published' : 1}]
+				values : [{'pegawai_published' : 1}]
 			},function (err, res, fields) {
 				var r= resData("get data pegawai ", err, res, fields);
 				cb(r);
@@ -15,7 +15,7 @@ module.exports = {
 			{
 				sql : `SELECT * FROM data_pegawai INNER JOIN master_subagian ON data_pegawai.subag_pegawai = master_subagian.subagian_id WHERE ? AND ? `,
 				values : [
-					{'published' : 1},
+					{'pegawai_published' : 1},
 					{'user_id' : id},
 				]
 			},function (err, res, fields) {
@@ -73,7 +73,7 @@ module.exports = {
 			{
 				sql : `UPDATE data_pegawai SET ? WHERE ?`,
 				values : [
-					{'upblished' : 0},
+					{'pegawai_published' : 0},
 					{'user_id' : id}
 				]
 			},function (err, res, fields) {

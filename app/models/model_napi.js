@@ -6,8 +6,11 @@ module.exports = {
 					 LEFT JOIN master_kamar ON data_napi.napi_kamar = master_kamar.master_kamar_id 
 					 LEFT JOIN master_blok ON master_kamar.master_blok_id = master_blok.blok_master_id 
 					 LEFT JOIN master_subagian ON data_napi.napi_booked_by = master_subagian.subagian_id
-					 WHERE ?`,
-				values : [{'data_napi.napi_published' : 1}]
+					 WHERE ? AND ?`,
+				values : [
+					{'data_napi.napi_published' : 1},
+					{'data_napi.napi_booked' : 0}
+				]
 			},function (err, res, fields) {
 				var r= resData("get data pegawai ", err, res, fields);
 				cb(r);
@@ -22,9 +25,10 @@ module.exports = {
 					 LEFT JOIN master_kamar ON data_napi.napi_kamar = master_kamar.master_kamar_id 
 					 LEFT JOIN master_blok ON master_kamar.master_blok_id = master_blok.blok_master_id 
 					 LEFT JOIN master_subagian ON data_napi.napi_booked_by = master_subagian.subagian_id
-					 WHERE ? AND ?`,
+					 WHERE ? AND ? AND ?`,
 				values : [
 					{'data_napi.napi_published' : 1},
+					{'data_napi.napi_booked' : 0},
 					{'data_napi.napi_kamar' : kamarid},
 				]
 			},function (err, res, fields) {
@@ -53,7 +57,7 @@ module.exports = {
 		)
 	},
 
-	save_pegawai : function (con, credentials, cb) {
+	save_napi : function (con, credentials, cb) {
 		con.query(
 			{
 				sql : `INSERT INTO data_napi SET ?`,
@@ -69,6 +73,25 @@ module.exports = {
 				]
 			},function (err, res, fields) {
 				var r= resData("insert data napi ", err, res, fields);
+				cb(r);
+			}
+		)
+	},
+
+	book_napi : function (con, credentials, cb) {
+		con.query(
+			{
+				sql : `UPDATE data_napi SET ? WHERE ?`,
+				values : [
+					{
+						'napi_booked' : credentials.napi_booked,
+						'napi_booked_by' : credentials.napi_booked_by,
+					},{
+						'napi_id' : credentials.id,
+					}
+				]
+			},function (err, res, fields) {
+				var r= resData(`booked napi ${credentials.id} `, err, res, fields);
 				cb(r);
 			}
 		)

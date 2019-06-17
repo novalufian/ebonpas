@@ -9,7 +9,8 @@ module.exports = {
 }
 
 function boot() {
-	loadPage("page/bon-riwayat.html");
+	loadPage("page/data-pegawai.html");
+	$('#template-preloading').load("page/loader.html");
 	$('#template-navbar-section').load("partials/navbar.html");
 
 	setTimeout(function () {
@@ -26,9 +27,18 @@ function navigate_page() {
 }
 
 function loadPage(page) {
-	$('#template-content-section').load("page/loader.html");
+	preloading_show();
 	setTimeout(function () {
 		$('#template-content-section').load(page, function (res, status, xhr) {
 		});
+		preloading_hide();
 	}, 500)
+}
+
+function preloading_show() {
+	$('#template-preloading').css("top", "0px");
+}
+
+function preloading_hide() {
+	$('#template-preloading').css("top", "-200vh");
 }
