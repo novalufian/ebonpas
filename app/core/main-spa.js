@@ -9,7 +9,7 @@ module.exports = {
 }
 
 function boot() {
-	loadPage("page/bon-napi.html");
+	loadPage("page/bon-riwayat.html");
 	$('#template-navbar-section').load("partials/navbar.html");
 
 	setTimeout(function () {
