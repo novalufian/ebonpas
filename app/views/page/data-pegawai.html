@@ -47,10 +47,101 @@
           })
       </script>
 
+    <script src="../controllers/pegawai.js"></script>
 
+    <div class="modal fade" id="modal_delete_user" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title text-danger" id="exampleModalLabel">Hapus user</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Apakah anda ingi menghapus user ini ?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Batalkan</button>
+                    <button type="button" class="btn btn-danger" id="btn-delete-user">Ya, hapus user</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
-      <div class="modal fade" id="modalTambahPegawai" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-       <div class="modal-dialog" role="document">
+    <div class="modal fade" id="modal_edit_pegawai" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+           <div class="modal-content">
+               <div class="card">
+                <div class="card-header">
+                    <strong>Input Data</strong> Pegawai
+                </div>
+                <div class="card-body card-block">
+                    <form id="form-edit-pegawai" class="form-horizontal">
+
+                        <div class="row">
+                            <div class="col cell-3">
+                                <label f="text-input" class=" form-control-label">Nip Pegawai</label>
+                            </div>
+                            <div class=" cell-9">
+                                <input type="text" id="nip_pegawai" name="nip_pegawai" placeholder="contoh : 198503302003121002" class="form-control">
+                                <small class="form-text text-muted">*data tidak boleh kosong</small>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col cell-3">
+                                <label f="text-input" class=" form-control-label">Nama Pegawai</label>
+                            </div>
+                            <div class=" cell-9">
+                                <input type="text" id="nama_pegawai" name="nama_pegawai" placeholder="Nama lengkap pegawai" class="form-control">
+                                <small class="form-text text-muted">*data tidak boleh kosong</small>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class=" cell-3"><label for="select" class=" form-control-label">Subagian</label></div>
+                            <div class=" cell-9">
+                                <select name="subag_pegawai" id="subag_pegawai" class="form-control">
+                                    <option value="1">TU</option>
+                                    <option value="2">KPLP</option>
+                                    <option value="3">REGISTRASI</option>
+                                    <option value="4">PLOKLINIK</option>
+                                    <option value="5">KAMTIB</option>
+                                    <option value="6">KOPERASI</option>
+                                    <option value="7">BIMPAS</option>
+                                    <option value="8">BENGKER</option>
+                                    <option value="9">POS 3.1</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col cell-3"><label class=" form-control-label">Jenis Kelamin</label></div>
+                            <div class="col cell-9">
+                                <div class="form-check-inline form-check">
+                                    <label for="inline-radio1" class="form-check-label ">
+                                        <input type="radio" id="inline-radio1" name="sex_pegawai" value="0" class="form-check-input">Laki - laki
+                                    </label>
+                                    <label for="inline-radio2" class="form-check-label ">
+                                        <input type="radio" id="inline-radio2" name="sex_pegawai" value="1" class="form-check-input">Perempuan
+                                    </label>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <button type="reset" class="btn btn-default">Reset Data</button>
+                            <button type="button" class="btn btn-primary" id="btn-edit-pegawai">Edit data</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modalTambahPegawai" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
            <div class="modal-content">
                <div class="card">
                 <div class="card-header">
@@ -115,30 +206,6 @@
                             <button type="button" class="btn btn-primary" id="btn-simpan-pegawai">Simpan data</button>
                         </div>
                     </form>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-    <script src="../controllers/pegawai.js"></script>
-
-
-     <div class="modal fade" id="modal_delete_user" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title text-danger" id="exampleModalLabel">Hapus user</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    Apakah anda ingi menghapus user ini ?
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Batalkan</button>
-                    <button type="button" class="btn btn-danger" id="btn-delete-user">Ya, hapus user</button>
                 </div>
             </div>
         </div>

@@ -2,12 +2,6 @@ $(document).ready(function () {
 	boot();
 })
 
-module.exports = {
-	boot : function () {
-		
-	}
-}
-
 function boot() {
 	loadPage("page/home.html");
 	$('#template-preloading').load("page/loader.html");
@@ -15,9 +9,13 @@ function boot() {
 
 	setTimeout(function () {
 		$(".navigate-spa").each(function (i, e) {
-			e.addEventListener("click", navigate_page)
+			if (!Boolean(e.getAttribute("data-adding-event"))) {
+				e.addEventListener("click", navigate_page);
+				e.setAttribute("data-adding-event", "true");
+			}
 		})
-	}, 550)
+	}, 550);
+
 	$('#template-login-section').load("page/login.html");
 }
 

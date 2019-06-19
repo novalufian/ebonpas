@@ -15,7 +15,10 @@ function createWindow() {
             nodeIntegration: true
         },
         transparent: false,
+        icon: __dirname + '/assets/img/icon.png'
     })
+
+    mainWindow.setMenuBarVisibility(false)
 
     mainWindow.loadFile('./app/views/index.html')
 

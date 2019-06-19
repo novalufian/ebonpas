@@ -5,7 +5,7 @@
                 <!-- Begin Page Content -->
                   <div class="container-fluid start-screen h-100 col-md-10">
                   	
-				<div class="card">
+				    <div class="card">
                                 <div class="card-header">
                                     <button class="btn btn-primary" data-toggle="modal" data-target="#modalTambahNapi">
                                         <span class="ti-plus"></span>
@@ -14,7 +14,7 @@
                                     <strong class="card-title" style="float: right;">Data Napi</strong>
                                 </div>
                                 <div class="card-body">
-                                    <table id="bootstrap-data-table" class="table table-striped table-bordered">
+                                    <table id="dataTable" class="table table-striped table-bordered table-data-napi">
                                         <thead>
                                             <tr>
                                                 <th>No reg</th>
@@ -72,7 +72,7 @@
         <!-- End of Content Wrapper -->
     </div>
     <!-- End of Page Wrapper -->
-    <script src="../../assets/js/demo/datatables-demo.js"></script>
+    <script src="../controllers/data_napi.js"></script>
 
 
 <div class="modal fade" id="modalTambahNapi" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -83,7 +83,7 @@
                   <strong>Input Data</strong> Tahanan
               </div>
               <div class="card-body card-block">
-                  <form action="http://ebonpas.epizy.com/index.php/admin/napi/simpan" method="post" enctype="multipart/form-data" class="form-horizontal">
+                  <form class="form-horizontal" id="form-tambah-napi">
 
                       <div class="row">
                           <div class="col cell-3">
@@ -107,11 +107,7 @@
                           <div class=" cell-3"><label for="select" class=" form-control-label">Kamar</label></div>
                           <div class=" cell-3">
                               <select id="select_blok" class="form-control">
-                                  <option value="BLK-001">BLOK 1</option>
-                                  <option value="BLK-002">BLOK 2</option>
-                                  <option value="BLK-004">BLOK 4</option>
-                                  <option value="BLK-005">BLOK 5</option>
-                                  <option value="BLOK-003">BLOK 3</option>
+                                  
                               </select>
                           </div>
                           <div class=" cell-6">
@@ -136,12 +132,10 @@
                       </div>
 
                       <div class="row">
-                          <div class="cell-7">
-                              <a href="http://ebonpas.epizy.com/index.php/admin/napi" class="btn btn-warning">kembali</a>
-                          </div>
+                          
                           <div class="cell-5">
                               <button type="reset" class="btn btn-default">Reset Data</button>
-                              <button type="submit" class="btn btn-primary">Simpan data</button>
+                              <button type="button" class="btn btn-primary" id="btn-simpan-napi">Simpan data</button>
                           </div>
                       </div>
               </div>
@@ -149,3 +143,93 @@
        </div>
    </div>
 </div>
+
+<div class="modal fade" id="modalEditNapi" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+   <div class="modal-dialog modal-lg" role="document">
+       <div class="modal-content ">
+           <div class="card">
+              <div class="card-header">
+                  <strong>Ubah Data</strong> Tahanan
+              </div>
+              <div class="card-body card-block">
+                  <form class="form-horizontal" id="form-tambah-napi">
+
+                      <div class="row">
+                          <div class="col cell-3">
+                              <label f="text-input" class=" form-control-label">Nomor </label>
+                          </div>
+                          <div class=" cell-9">
+                              <input type="text" id="napi_no_reg_edit" name="napi_no_reg" placeholder="contoh : 198503302003121002" class="form-control">
+                              <small class="form-text text-muted">*data tidak boleh kosong</small>
+                          </div>
+                      </div>
+                      <div class="row">
+                          <div class="col cell-3">
+                              <label f="text-input" class=" form-control-label">Nama Tahanan</label>
+                          </div>
+                          <div class=" cell-9">
+                              <input type="text" id="napi_nama_edit" name="napi_nama" placeholder="Nama lengkap tahanan" class="form-control">
+                              <small class="form-text text-muted">*data tidak boleh kosong</small>
+                          </div>
+                      </div>
+                      <div class="row">
+                          <div class=" cell-3"><label for="select" class=" form-control-label">Kamar</label></div>
+                          <div class=" cell-3">
+                              <select id="select_blok_edit" class="form-control" name="select_blok_edit">
+                                  
+                              </select>
+                          </div>
+                          <div class=" cell-6">
+                              <select name="napi_kamar" id="napi_kamar_wrapper_edit" class="form-control">
+                              </select>
+                          </div>
+                      </div>
+
+                      <div class="row">
+                          <div class="col cell-3"><label class=" form-control-label">Jenis Kelamin</label></div>
+                          <div class="col cell-9">
+                              <div class="form-check-inline form-check">
+                                  <label for="inline-radio1" class="form-check-label ">
+                                      <input type="radio" id="inline-radio1-edit" name="napi_sex" value="0" class="form-check-input">Laki - laki
+                                  </label>
+                                  <label for="inline-radio2" class="form-check-label ">
+                                      <input type="radio" id="inline-radio2-edit" name="napi_sex" value="1" class="form-check-input">Perempuan
+                                  </label>
+
+                              </div>
+                          </div>
+                      </div>
+
+                      <div class="row">
+                          
+                          <div class="cell-5">
+                              <button class="btn btn-default" data-dismiss="modal">Batalkan</button>
+                              <button type="button" class="btn btn-success" id="btn-edit-napi">Ubah Data</button>
+                          </div>
+                      </div>
+              </div>
+          </div>
+       </div>
+   </div>
+</div>
+
+
+   <div class="modal fade" id="modal_delete_napi" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title text-danger" id="exampleModalLabel">Hapus napi</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Apakah anda ingi menghapus napi ini ?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Batalkan</button>
+                    <button type="button" class="btn btn-danger" id="btn-delete-napi">Ya, hapus napi</button>
+                </div>
+            </div>
+        </div>
+    </div>

@@ -64,7 +64,7 @@ module.exports = {
 				values : [
 					{
 						'napi_id' : credentials.napi_id,
-						'napi_foto' : credentials.napi_foto,
+						'napi_foto' : "lorem",
 						'napi_no_reg' :  credentials.napi_no_reg,
 						'napi_nama' :  credentials.napi_nama,
 						'napi_kamar' :  credentials.napi_kamar,
@@ -124,7 +124,7 @@ module.exports = {
 			{
 				sql : `UPDATE data_napi SET ? WHERE ?`,
 				values : [
-					{'napi_upblished' : 0},
+					{'napi_published' : 0},
 					{'napi_id' : id}
 				]
 			},function (err, res, fields) {
