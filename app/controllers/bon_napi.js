@@ -74,7 +74,7 @@ function delete_cart() {
     var napiid = this.getAttribute("data-napi-id");
     var cred = {
         'id' : napiid,
-        'napi_booked' : 1,
+        'napi_booked' : 0,
         'napi_booked_by' : ''
     }
     _napi.book_napi(_conn, cred , function (res) {

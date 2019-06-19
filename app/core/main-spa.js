@@ -9,7 +9,7 @@ module.exports = {
 }
 
 function boot() {
-	loadPage("page/data-pegawai.html");
+	loadPage("page/home.html");
 	$('#template-preloading').load("page/loader.html");
 	$('#template-navbar-section').load("partials/navbar.html");
 

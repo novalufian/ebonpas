@@ -13,6 +13,7 @@ var tablePegawai = document.querySelector(".table-list-pegawai");
 var formTambahPegawai = document.querySelector("#form-tambah-pegawai");
 
 var btnDelete = document.querySelector("#btn-delete-user");
+var btnSimpan = document.querySelector("#btn-simpan-pegawai");
 
 
 boot_pegawai();
@@ -20,6 +21,7 @@ boot_pegawai();
 function boot_pegawai() {
     create_table_pegawai();
     btnDelete.addEventListener("click", delete_pegawai)
+    btnSimpan.addEventListener("click", simpan_data_pegawai)
 }
 
 function create_table_pegawai() {
@@ -103,3 +105,29 @@ function delete_pegawai() {
         }
     })
 }
+
+function simpan_data_pegawai() {
+    var serial = serialize(formTambahPegawai, {hash : true})
+    console.log(serial)
+    var cred = {
+        'user_id' : 'USR-'+ Date.now() + Math.floor(Math.random(100000, 1000000) * 1000000000),
+        'nip_pegawai' : serial.nip_pegawai,
+        'nama_pegawai' : serial.nama_pegawai,
+        'subag_pegawai' : serial.subag_pegawai,
+        'jenis_kelamin_pegawai' : serial.sex_pegawai,
+        'ttd_pegawai' : "lorem",
+    }
+
+    _pegawai.save_pegawai(_conn, cred, function (res) {
+        if (res.success) {
+            if (res.status == 200) {
+                create_table_pegawai();
+                $("#modalTambahPegawai").modal("hide");
+            }
+        }else{
+            alert("gagal menyimpan , cek koneksi data")
+            $("#modalTambahPegawai").modal("hide");
+        }
+    })
+}
+
