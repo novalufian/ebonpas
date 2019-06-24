@@ -3,6 +3,7 @@ var serialize = require('form-serialize');
 var _conn = require('../core/connection');
 var _session = require('../core/create_session');
 var _cart = require('../core/cart');
+var _nav = require('../core/main-spa');
 
 var _kamar = require('../models/model_kamar');
 var _blok = require('../models/model_blok');
@@ -30,11 +31,8 @@ function create_napi_list() {
     bonNapiList.querySelector("tbody").innerHTML = "";
     
     var list_napi_booking = JSON.parse(_cart.list());
-    console.log(list_napi_booking.item)
 
     list_napi_booking.item.forEach(function (el, i) {
-        console.log(el, i)
-
         var tr = document.createElement("tr");
 
         var napi_id = document.createElement("td");
@@ -94,6 +92,7 @@ function init_form_value_current_user(current_user) {
 }
 
 function kirim_bon() {
+    btnKirimBon.querySelector(".text").textContent = "Loading....";
     var bonId = 'BON-'+ Date.now() + Math.floor(Math.random(100000, 1000000) * 1000000000);
     var serial = serialize(formBonNapi, {hash : true});
     var jm = serial.jam_masuk;
@@ -109,7 +108,6 @@ function kirim_bon() {
     }
 
     _bon.save_bon_data(_conn, crendentials, function (res) {
-        console.log(res)
         if (res.success) {
             if (res.status == 200) {
                 kirim_bon_detail(bonId);
@@ -131,8 +129,12 @@ function kirim_bon_detail(bonId) {
             'napi_id' : el.napi_id 
         }       
          _bon_detail.save_detail_bon(_conn, cred, function (res) {
-             console.log(res)
+            
          })
     })
+
+    _nav.redirect("../views/page/bon-riwayat.html");
+    btnKirimBon.querySelector(".text").textContent = "Kirim permintaan bon";
+    
 }
 

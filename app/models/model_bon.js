@@ -6,6 +6,7 @@ module.exports = {
                 	SELECT * FROM bon 
                 	LEFT JOIN data_pegawai ON data_pegawai.user_id = bon.bon_user
                 	LEFT JOIN master_subagian ON master_subagian.subagian_id = bon.bon_subagian
+                    ORDER BY bon.bon_created_at DESC
                 `,
                
             },function (err, res, fields) {
@@ -44,6 +45,7 @@ module.exports = {
                 	SELECT * FROM bon 
                 	LEFT JOIN data_pegawai ON data_pegawai.user_id = bon.bon_user
                 	LEFT JOIN master_subagian ON master_subagian.subagian_id = bon.bon_subagian
+                    ORDER BY bon.bon_created_at DESC
                 	WHERE ? 
                 `,
                 values : [{'bon.bon_user' : userid}]

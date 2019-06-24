@@ -1,5 +1,5 @@
 module.exports = {
-    get_all_subagian : function(con, cb ) {
+    get_all_blok : function(con, cb ) {
         con.query(
             {
                 sql : `

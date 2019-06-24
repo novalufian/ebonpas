@@ -27,7 +27,7 @@ $("#btn-login").click(function () {
        var credentials = {
               "username" : data.username,
               "password" : data.password,
-              "user_login_role" : 1,
+              "user_login_role" :data.user_role_id,
              
        }
        _auth_admin.login(_conn, credentials, function (res) {
@@ -46,6 +46,9 @@ $("#btn-login").click(function () {
                             _session.create(thisUser); 
                             console.log(thisUser)
                             $('#template-login-section').css("top","-200vh");
+                            setTimeout(function () {
+                                   $('#template-content-section').load("../views/page/home.html", function (res, status, xhr) {});
+                            }, 500)
                      }
 
               }else{

@@ -137,19 +137,22 @@ module.exports = {
 	count_all_napi_by_subag : function (con, subag, kamarid, cb) {
 		var add_q = (kamarid !== null) ? 'AND ?' : '';
 		var _values = [
-			{'napi_published' : 1},
-			{'napi_booked_by' : subag},
+			{'data_napi.napi_published' : 1},
+			{'data_pegawai.subag_pegawai' : subag},
 		]
 		if (kamarid !== null) {
 			_values = [
-				{'napi_published' : 1},
-				{'napi_booked_by' : subag},
-				{'napi_kamar' : kamarid},
+				{'data_napi.napi_published' : 1},
+				{'data_pegawai.subag_pegawai' : subag},
+				{'data_napi.napi_kamar' : kamarid},
 			]
 		}
 		con.query(
 			{
-				sql : `SELECT * FROM data_napi WHERE ? AND ? ${add_q}`,
+				sql : `
+					SELECT * FROM data_napi 
+					LEFT JOIN data_pegawai ON data_napi.napi_booked_by = data_pegawai.user_id
+					WHERE ? AND ? ${add_q}`,
 				values : _values
 			},function (err, res, fields) {
 				var r= res.length;

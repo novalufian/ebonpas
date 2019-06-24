@@ -5,7 +5,7 @@
             <div id="content">
                 <!-- Begin Page Content -->
                     <div class="container-fluid start-screen h-100 row">
-                        <div class="tiles-area clear">
+                        <div class="tiles-area clear" id="admin-section" style="display: none">
                             <div class="tiles-grid tiles-group size-2 fg-white" data-group-title="General">
                                 <div data-role="tile" data-page="page/blok-lapas.html" class="bg-gradient-warning navigate-spa">
                                     <span class="fa fa-bars icon"></span>
@@ -54,6 +54,31 @@
                                 </div>
                             </div>
                         </div>
+
+
+                        <div class="tiles-area clear" id="user-section" style="display: none">
+                            <div class="tiles-grid tiles-group size-2 fg-white" data-group-title="General">
+                                <div data-role="tile" data-page="page/blok-lapas.html" data-size="wide" class="bg-gradient-warning navigate-spa">
+                                    <span class="fa fa-bars icon"></span>
+                                    <span class="branding-bar">Blok Lapas</span>
+                                </div>
+                            </div>
+
+                            <div class="tiles-grid tiles-group size-2 fg-white" data-group-title="User management">
+                                <div data-role="tile" data-page="page/bon-napi.html" data-size="wide" class="bg-gradient-info navigate-spa">
+                                    <span class="fa fa-book-reader icon"></span>
+                                    <span class="branding-bar">Bon napi </span>
+                                </div>
+                            </div>
+
+                            <div class="tiles-grid tiles-group size-2 fg-white" data-group-title="Master management">
+                                <div data-role="tile" data-page="page/bon-riwayat.html" data-size="wide" class="bg-gradient-danger navigate-spa">
+                                    <span class="fa fa-history icon"></span>
+                                    <span class="branding-bar">Riwayat bon napi</span>
+                                </div>
+                                
+                            </div>
+                        </div>
                 <!-- /.container-fluid -->
             </div>
             <!-- End of Main Content -->
@@ -64,7 +89,21 @@
     <!-- End of Page Wrapper -->
 
     <script>
+        var _session = require('../core/create_session');
+        var this_role = JSON.parse(_session.this_user()).user_login_role;
+        console.log(this_role)
+
         setTimeout(function () {
+            if (Boolean(this_role)) {
+                console.log('adimin')
+                document.getElementById("admin-section").style = 'display : blok !important';
+                document.getElementById("user-section").style.display = 'none';
+            }else{
+                console.log('user')
+                document.getElementById("admin-section").style.display = 'none';
+                document.getElementById("user-section").style = 'display : blok !important';
+            }
+
             $(".navigate-spa").each(function (i, e) {
                 if (!Boolean(e.getAttribute("data-adding-event"))) {
                     console.log('adding menu')
@@ -95,4 +134,5 @@
         function preloading_hide() {
             $('#template-preloading').css("top", "-200vh");
         }
+
     </script>

@@ -1,13 +1,21 @@
+module.exports= {
+	redirect : function (page) {
+		loadPage(page)
+	}
+}
+
+var _session = require('../core/create_session');
+
 $(document).ready(function () {
 	boot();
 })
 
 function boot() {
-	loadPage("page/home.html");
 	$('#template-preloading').load("page/loader.html");
 	$('#template-navbar-section').load("partials/navbar.html");
 
 	setTimeout(function () {
+		loadPage("page/home.html")
 		$(".navigate-spa").each(function (i, e) {
 			if (!Boolean(e.getAttribute("data-adding-event"))) {
 				e.addEventListener("click", navigate_page);
