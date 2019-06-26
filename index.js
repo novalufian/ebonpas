@@ -2,10 +2,19 @@ const {
     app,
     BrowserWindow,
     globalShortcut,
-    Notification
-} = require('electron')
+    Notification,
+    ipcMain
+} = require('electron');
 require('electron-reload')(__dirname);
 let mainWindow
+
+ipcMain.on('asynchronous-notif', (event, arg) => {
+    console.log('show notif')
+    let myNotification = new Notification('ebon notif', {
+      body: arg
+    })
+    myNotification.show();
+})
 
 function createWindow() {
     mainWindow = new BrowserWindow({

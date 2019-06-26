@@ -6,6 +6,7 @@ module.exports = {
                     SELECT * FROM login 
                     LEFT JOIN data_pegawai ON data_pegawai.user_id = login.user_id
                     WHERE ? AND ?
+                    ORDER BY user_login_created_at DESC
                 `,
                 values : [
                     {'login.user_login_role' : role_user},
@@ -29,6 +30,25 @@ module.exports = {
                 `,
                 values : [
                     {'login.user_login_role' : role_user},
+                    {'login.published' : 1},
+                ]
+               
+            },function (err, res, fields) {
+                var r= resData(`get all data user by level `, err, res, fields);
+                cb(r);
+            }
+        )
+    },
+
+    get_one_published_by_login_id : function(con, id, cb) {
+        con.query(
+            {
+                sql : `
+                    SELECT * FROM login 
+                    WHERE ? AND ?
+                `,
+                values : [
+                    {'login.login_id' : id},
                     {'login.published' : 1},
                 ]
                

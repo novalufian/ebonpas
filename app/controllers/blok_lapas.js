@@ -38,6 +38,7 @@ $(window).ready(function () {
 
     function get_all_napi_list() {
         globalDataNapi = [];
+        $('#template-preloading').css("top", "0px");
 
         _napi.get_all_napi_published(_conn, function (res) {
             res.data.forEach(function (el, i) {
@@ -94,6 +95,7 @@ $(window).ready(function () {
         target.innerHTML = "";
 
         _napi.get_all_napi_by_kamarid(_conn, kamarId, function (res) {
+            console.log(res)
             if (res.status == 200) {
                 res.data.forEach(function (el , i) {
                     create_napi_table_list(el);  
@@ -225,6 +227,7 @@ $(window).ready(function () {
         _master_subag.get_all_blok(_conn, function (result) {
             result.data.forEach(function (el, i) {
                 _napi.count_all_napi_by_subag(_conn, el.subagian_id, kamarId, function (res) {
+                    
                     var tr = document.createElement("tr");
                     tr.setAttribute("style", `background : #${el.bagian_warna} ; color : #000;`)
                     
@@ -240,6 +243,10 @@ $(window).ready(function () {
                     td3.textContent = res;
                     tr.appendChild(td3)
                     tableDiagramNapi.appendChild(tr);
+
+                    if (i == (result.data.length - 1)) {
+                        $('#template-preloading').css("top", "-200vh");
+                    }
                 })
             })
         })

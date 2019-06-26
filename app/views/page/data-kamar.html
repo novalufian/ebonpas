@@ -26,8 +26,9 @@
                                               <table id="dataTable" class="table table-striped table-bordered table-list-kamar">
                                                   <thead>
                                                       <tr>
+                                                          <th>No</th>
+                                                          <th>Blok</th>
                                                           <th>kamar</th>
-                                                          <th>Warna</th>
                                                           <th>Action</th>
                                                       </tr>
                                                   </thead>
@@ -87,19 +88,20 @@
                     <form id="form-tambah-kamar">
                         <div class="row">
                           <div class="col cell-3">
-                              <label f="text-input" class=" form-control-label">Nama kamar</label>
+                              <label f="text-input" class=" form-control-label">Nama Blok</label>
                           </div>
                           <div class=" cell-9">
-                              <input type="text" id="nama_kamar" name="nama_kamar" placeholder="BAGIAN" class="form-control">
-                              <small class="form-text text-muted">*data tidak boleh kosong</small>
+                              <select class="form-control" name="master_blok_id" id="blok_list">
+                                  
+                              </select>
                           </div>
                         </div>
                         <div class="row">
                           <div class="col cell-3">
-                              <label f="text-input" class=" form-control-label">Nama Warna</label>
+                              <label f="text-input" class=" form-control-label">Nama Kamar</label>
                           </div>
                           <div class=" cell-9">
-                              <input type="text" id="warna_kamar" name="warna_kamar" placeholder="asdasd" class="form-control">
+                              <input type="text" id="warna_kamar" name="nama_kamar" placeholder="asdasd" class="form-control">
                               <small class="form-text text-muted">*data tidak boleh kosong</small>
                           </div>
                         </div>
@@ -127,19 +129,21 @@
                     <form id="form-edit-kamar">
                         <div class="row">
                           <div class="col cell-3">
-                              <label f="text-input" class=" form-control-label">Nama kamar</label>
+                              <label f="text-input" class=" form-control-label">Nama Blok</label>
                           </div>
                           <div class=" cell-9">
-                              <input type="text" id="nama_kamar_edit" name="nama_kamar" placeholder="BAGIAN" class="form-control">
-                              <small class="form-text text-muted">*data tidak boleh kosong</small>
+                              <select class="form-control" name="master_blok_id" id="edit_blok_list">
+                                  
+                              </select>
                           </div>
                         </div>
                         <div class="row">
                           <div class="col cell-3">
-                              <label f="text-input" class=" form-control-label">Nama Warna</label>
+                              <label f="text-input" class=" form-control-label">Nama Kamar</label>
                           </div>
                           <div class=" cell-9">
-                              <input type="text" id="warna_kamar_edit" name="warna_kamar" placeholder="asdasd" class="form-control">
+                              <input type="hidden" id="edit_kamar_id" name="master_kamar_id" class="form-control">
+                              <input type="text" id="edit_nama_kamar" name="nama_kamar" placeholder="" class="form-control">
                               <small class="form-text text-muted">*data tidak boleh kosong</small>
                           </div>
                         </div>
@@ -147,7 +151,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Batalkan</button>
-                    <button type="button" class="btn btn-primary" id="btn-edit-kamar">Ubah bagian</button>
+                    <button type="button" class="btn btn-primary" id="btn-edit-kamar">Ubah kamar</button>
                 </div>
             </div>
         </div>

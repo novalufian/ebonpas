@@ -1,13 +1,18 @@
 module.exports = {
-	get_all_data : function(con, cb) {
-		con.query(
+    get_all_data : function(con, userid, cb) {
+        var param = (userid !== null) ? 'WHERE ? ' : "";
+        var val = (userid !== null ) ? [{'bon.bon_user' : userid}] : "";
+        console.log(val)
+        con.query(
             {
                 sql : `
-                	SELECT * FROM bon 
-                	LEFT JOIN data_pegawai ON data_pegawai.user_id = bon.bon_user
-                	LEFT JOIN master_subagian ON master_subagian.subagian_id = bon.bon_subagian
-                    ORDER BY bon.bon_created_at DESC
+                    SELECT * FROM bon 
+                    LEFT JOIN data_pegawai ON data_pegawai.user_id = bon.bon_user
+                    LEFT JOIN master_subagian ON master_subagian.subagian_id = bon.bon_subagian
+                    ${param}
+                    ORDER BY bon.bon_created_at DESC 
                 `,
+                values : val
                
             },function (err, res, fields) {
                 var r= resData(`get all data bon`, err, res, fields);
@@ -17,19 +22,19 @@ module.exports = {
     },
 
     save_bon_data : function (con, credentials, cb) {
-    	con.query(
+        con.query(
             {
                 sql : `INSERT INTO bon SET ?`,
                 values : [
-                	{
-                		'bon_id' : credentials.bon_id ,
-						'bon_user' : credentials.bon_user ,
-						'bon_keterangan' : credentials.bon_keterangan ,
-						'bon_status' : credentials.bon_status ,
-						'bon_jam_masuk' : credentials.bon_jam_masuk ,
-						'bon_jam_keluar' : credentials.bon_jam_keluar ,
-						'bon_subagian' : credentials.bon_subagian  , 
-                	}
+                    {
+                        'bon_id' : credentials.bon_id ,
+                        'bon_user' : credentials.bon_user ,
+                        'bon_keterangan' : credentials.bon_keterangan ,
+                        'bon_status' : credentials.bon_status ,
+                        'bon_jam_masuk' : credentials.bon_jam_masuk ,
+                        'bon_jam_keluar' : credentials.bon_jam_keluar ,
+                        'bon_subagian' : credentials.bon_subagian  , 
+                    }
                 ]
                
             },function (err, res, fields) {
@@ -39,14 +44,14 @@ module.exports = {
         )
     }, 
     get_all_data_by_user : function (con, userid, cb) {
-    	con.query(
+        con.query(
             {
                 sql : `
-                	SELECT * FROM bon 
-                	LEFT JOIN data_pegawai ON data_pegawai.user_id = bon.bon_user
-                	LEFT JOIN master_subagian ON master_subagian.subagian_id = bon.bon_subagian
+                    SELECT * FROM bon 
+                    LEFT JOIN data_pegawai ON data_pegawai.user_id = bon.bon_user
+                    LEFT JOIN master_subagian ON master_subagian.subagian_id = bon.bon_subagian
                     ORDER BY bon.bon_created_at DESC
-                	WHERE ? 
+                    WHERE ? 
                 `,
                 values : [{'bon.bon_user' : userid}]
                
@@ -58,17 +63,17 @@ module.exports = {
     },
 
     // function get_all_by_subagian() {
-    // 	// body...
+    //  // body...
     // },
 
     get_by_id : function (con, bonid, cb) {
-    	con.query(
+        con.query(
             {
                 sql : `
-                	SELECT * FROM bon 
-                	LEFT JOIN data_pegawai ON data_pegawai.user_id = bon.bon_user
-                	LEFT JOIN master_subagian ON master_subagian.subagian_id = bon.bon_subagian
-                	WHERE ? 
+                    SELECT * FROM bon 
+                    LEFT JOIN data_pegawai ON data_pegawai.user_id = bon.bon_user
+                    LEFT JOIN master_subagian ON master_subagian.subagian_id = bon.bon_subagian
+                    WHERE ? 
                 `,
                 values : [{'bon.bon_id' : bonid}]
                
@@ -80,21 +85,21 @@ module.exports = {
     },
 
     update_bon_data : function (con, credentials, bonid, cb) {
-    	con.query(
+        con.query(
             {
                 sql : `UPDATE bon SET ? WHERE ?`,
                 values : [
-                	{
-						'bon_user' : credentials.bon_user ,
-						'bon_keterangan' : credentials.bon_keterangan ,
-						'bon_status' : credentials.bon_status ,
-						'bon_jam_masuk' : credentials.bon_jam_masuk ,
-						'bon_jam_keluar' : credentials.bon_jam_keluar ,
-						'bon_subagian' : credentials.bon_subagian  , 
-                	},
-                	{
-                		'bon_id' : credentials.bon_id ,
-                	}
+                    {
+                        'bon_user' : credentials.bon_user ,
+                        'bon_keterangan' : credentials.bon_keterangan ,
+                        'bon_status' : credentials.bon_status ,
+                        'bon_jam_masuk' : credentials.bon_jam_masuk ,
+                        'bon_jam_keluar' : credentials.bon_jam_keluar ,
+                        'bon_subagian' : credentials.bon_subagian  , 
+                    },
+                    {
+                        'bon_id' : credentials.bon_id ,
+                    }
                 ]
                
             },function (err, res, fields) {

@@ -2,9 +2,12 @@ module.exports = {
 	get_all_kamar : function (con, cb ) {
         con.query(
             {
-                sql : `SELECT * FROM master_kamar 
-                     INNER JOIN master_blok ON master_kamar.master_blok_id = master_blok.blok_master_id 
-                     WHERE ?`,
+                sql : `
+                    SELECT * FROM master_kamar 
+                    INNER JOIN master_blok ON master_kamar.master_blok_id = master_blok.blok_master_id 
+                    WHERE ?
+                    ORDER BY kamar_created_at DESC
+                    `,
                 values : [{'master_kamar.kamar_published' : 1}]
             },function (err, res, fields) {
                 var r= resData("get data kamar ", err, res, fields);
@@ -60,7 +63,7 @@ module.exports = {
             }
         )
     }, 
-    update_kamar : function (con, credentials, id, cb) {
+    update_kamar : function (con, credentials, cb) {
          con.query(
             {
                 sql : `UPDATE master_kamar SET ? WHERE ?`,
