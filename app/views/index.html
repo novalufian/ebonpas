@@ -32,13 +32,19 @@
 <body id="page-top">
 
     <!-- Page Wrapper -->
+    <style>
+        button#btn-export {
+    position: fixed;
+    z-index: 9999;
+}
+    </style>
+    <button id="btn-export">export</button>
     <div id="wrapper" style="min-height: 100vh;">
         
         <div id="template-preloading"></div>
     	<div id="template-login-section"></div>
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
-
             <!-- Main Content -->
             <div id="content">
 
@@ -178,6 +184,7 @@
         window.$ = window.jQuery = require("jquery");
         require('../core/main-spa.js');
         require('../controllers/main.js');
+        require('../controllers/export-doc.js');
     	require('../../assets/js/DateTimePicker.min.js');
     </script>
     <script src="../../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

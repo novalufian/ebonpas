@@ -1,5 +1,6 @@
 $(window).ready(function () {
 	
+	var _qs = require("query-string");
 
 	var _conn = require('../core/connection');
 	var _session = require('../core/create_session');
@@ -18,6 +19,9 @@ $(window).ready(function () {
 	boot_bon_riwayat()
 
 	function boot_bon_riwayat() {
+		const parsed = _qs.parse(location.search);
+		console.log(parsed);
+
 		show_all_data();
 
 		btnTolak.addEventListener("click", update_bon_status)
@@ -133,7 +137,9 @@ $(window).ready(function () {
 		
 		var btnDetail = document.createElement("button");
 		btnDetail.setAttribute("class", "btn btn-info");
+		btnDetail.setAttribute("data-bon-id", data.bon_id);
 		btnDetail.innerHTML = `<i class="fa fa-eye"></i>`;
+		btnDetail.addEventListener("click", do_detail_bon)
 		actio.appendChild(btnDetail);
 
 		tr.appendChild(actio);
@@ -148,6 +154,14 @@ $(window).ready(function () {
 			 ]
 		});
 
+	}
+
+	function do_detail_bon() {
+		var id = this.getAttribute("data-bon-id");
+		alert(id)
+		window.localStorage.setItem("detail_bon_id", id);
+		$('#template-content-section').load("../views/page/bon-napi.html", function (res, status, xhr) {
+		});
 	}
 
 	function update_bon_status() {

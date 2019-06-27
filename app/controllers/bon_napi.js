@@ -5,6 +5,7 @@ $(document).ready(function () {
     var _session = require('../core/create_session');
     var _cart = require('../core/cart');
     var _nav = require('../core/main-spa');
+    var _to_doc = require('../core/export-doc');
 
     var _kamar = require('../models/model_kamar');
     var _blok = require('../models/model_blok');
@@ -14,27 +15,105 @@ $(document).ready(function () {
     var _bon_detail = require('../models/model_bon_detail');
     var _notif = require('../models/model_notif');
 
+    var data_detail_bon = [];
+
     var current_user = JSON.parse(_session.this_user());
 
     var bonNapiList = document.getElementById("bon-napi-list");
     var btnKirimBon = document.getElementById("btn-kirim-bon");
+    var btnCetakDocx = document.getElementById("btn-cetak-docx");
     var formBonNapi = document.getElementById("form-bon-napi");
 
     boot_bon_napi();
 
     function boot_bon_napi() {
-
-        create_napi_list()
+        var detail_bon_id = window.localStorage.getItem("detail_bon_id");
+        setTimeout(function () {
+            window.localStorage.setItem("detail_bon_id", null)
+        },1000)
         init_form_value_current_user(current_user)
+
+        if (detail_bon_id !== "null") {
+            detail_from_riwayat(detail_bon_id)
+            btnKirimBon.setAttribute("disabled", true)
+            btnCetakDocx.setAttribute("enabled", true)
+            btnCetakDocx.addEventListener("click", function () {
+                _to_doc.export_docx(data_detail_bon)
+            })
+        }else{
+            detail_from_bon()
+            btnKirimBon.setAttribute("enabled", true)
+            btnCetakDocx.setAttribute("disabled", true)
+        }
+
+        
+    }
+
+    function detail_from_riwayat(detail_bon_id) {
+        console.log(detail_bon_id)
+        _bon.get_by_id(_conn, detail_bon_id, function (res) {
+            console.log(res)
+            data_detail_bon['bon_jam_keluar'] = format_date(res.data[0].bon_jam_keluar)
+            data_detail_bon['bon_jam_masuk'] = format_date(res.data[0].bon_jam_masuk)
+            data_detail_bon['bon_keterangan'] = res.data[0].bon_keterangan
+            data_detail_bon['nama'] = res.data[0].nama
+            data_detail_bon['nama_pegawai'] = res.data[0].nama_pegawai
+            data_detail_bon['nip_pegawai'] = res.data[0].nip_pegawai
+
+            document.getElementById("this_user_nama").value = res.data[0].nama_pegawai
+            document.getElementById("this_user_nip").value = res.data[0].nip_pegawai
+            document.getElementById("this_user_subagian").value = res.data[0].nama
+            document.getElementById("this_keperluan_bon").value = res.data[0].bon_keterangan
+            document.getElementById("this_jam_keluar").value = format_date(res.data[0].bon_jam_keluar)
+            document.getElementById("this_jam_masuh").value = format_date(res.data[0].bon_jam_masuk)
+
+            console.log(data_detail_bon);
+            get_detail_bon_napi(detail_bon_id);
+        })
+    }
+
+    function get_detail_bon_napi(detail_bon_id) {
+        _bon_detail.get_by_bon_id(_conn, detail_bon_id, function (res) {
+            create_napi_list(res.data)
+        })
+    }
+
+    function format_date(date_string) {
+        var d = new Date(date_string);
+        var nd = d.getDay()+ "-"+ d.getMonth()+"-"+d.getFullYear()+" "+d.getHours()+":"+d.getMinutes();
+        return nd;
+    }
+
+    function detail_from_bon() {
+        create_napi_list()
         btnKirimBon.addEventListener("click", kirim_bon);
     }
 
-    function create_napi_list() {
+    function generate_data_export(data) {
+        var cred = []
+        data.forEach(function (el, i) {
+            var a = {
+                'napi_id' : el.napi_id,
+                'napi_no_reg' : el.napi_no_reg,
+                'napi_nama' : el.napi_nama,
+                'blok_nama' : el.blok_nama + " / " + el.nama_kamar,
+            }
+            cred.push(a)
+        })
+
+        data_detail_bon['item'] = cred;
+
+    }
+
+    function create_napi_list(data) {
         bonNapiList.querySelector("tbody").innerHTML = "";
         
-        var list_napi_booking = JSON.parse(_cart.list());
+        var list_napi_booking = (data) ? data : JSON.parse(_cart.list()).item;
+        if (data) {
+            generate_data_export(data);
+        }
 
-        list_napi_booking.item.forEach(function (el, i) {
+        list_napi_booking.forEach(function (el, i) {
             var tr = document.createElement("tr");
 
             var napi_id = document.createElement("td");
@@ -59,6 +138,9 @@ $(document).ready(function () {
             btn.setAttribute("type", "button");
             btn.setAttribute("data-napi-index", i);
             btn.setAttribute("data-napi-id", el.napi_id);
+            if (data) {
+                btn.setAttribute("disabled", true);
+            }
             btn.addEventListener("click", delete_cart)
             btn.innerHTML = `<i class="fa fa-trash-alt"></i>`;
             action.appendChild(btn);

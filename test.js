@@ -1,15 +1,44 @@
-const mysql = require('mysql');
+// var JSZip = require('jszip');
+var Docxtemplater = require('docxtemplater');
 
-const _conn = require('./app/core/connection');
-const _napi_ = require('./app/models/model_napi');
-const _master_subag_ = require('./app/models/model_master_subag');
+var fs = require('fs');
+var path = require('path');
 
-console.log('all is well')
+//Load the docx file as a binary
+var content = fs
+    .readFileSync(path.resolve(__dirname, 'input.docx'), 'binary');
 
-// _napi_.get_all_napi_published(_conn , function (res) {
-//     console.log(res)
-// });
+// var zip = new JSZip(content);
 
-_master_subag_.get_all_blok(_conn, function (res) {
-    console.log(res)
-})
+var doc = new Docxtemplater();
+// doc.loadZip(zip);
+
+//set the templateVariables
+doc.setData({
+    first_name: 'John',
+    last_name: 'Doe',
+    phone: '0652455478',
+    description: 'New Website'
+});
+
+try {
+    // render the document (replace all occurences of {first_name} by John, {last_name} by Doe, ...)
+    doc.render()
+}
+catch (error) {
+    var e = {
+        message: error.message,
+        name: error.name,
+        stack: error.stack,
+        properties: error.properties,
+    }
+    console.log(JSON.stringify({error: e}));
+    // The error thrown here contains additional information when logged with JSON.stringify (it contains a property object).
+    throw error;
+}
+
+var buf = doc.getZip()
+             .generate({type: 'nodebuffer'});
+
+// buf is a nodejs buffer, you can either write it to a file or do anything else with it.
+fs.writeFileSync(path.resolve(__dirname, 'output.docx'), buf);
